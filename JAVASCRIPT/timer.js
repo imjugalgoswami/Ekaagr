@@ -1,4 +1,4 @@
-const timerWorker = new Worker("../JAVASCRIPT/workers.js");
+const timerWorker = new Worker("./JAVASCRIPT/workers.js");
 const timeBox = document.querySelector("#time");
 const hours = document.querySelector("#hours");
 const minutes = document.querySelector("#minutes");
