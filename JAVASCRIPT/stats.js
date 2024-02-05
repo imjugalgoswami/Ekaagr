@@ -3,6 +3,43 @@ const subjectData = document.querySelector(".subject-data");
 const byDate = document.querySelector("#bydate");
 const byHour = document.querySelector("#byhour");
 
+function AddHours(totalHours,currHours){
+    let prevMilliseconds = +(totalHours[9] + totalHours[10]);
+    let prevSeconds = +(totalHours[6] + totalHours[7]);
+    let prevMinutes = +(totalHours[3] + totalHours[4]);
+    let prevHour = +(totalHours[0] + totalHours[1]);
+
+    let currMilliseconds = +(currHours[9] + currHours[10]);
+    let currSeconds = +(currHours[6] + currHours[7]);
+    let currMinutes = +(currHours[3] + currHours[4]);
+    let currHour = +(currHours[0] + currHours[1]);
+
+    let totalMilliseconds = prevMilliseconds + currMilliseconds;
+    let totalSeconds = prevSeconds + currSeconds;
+    let totalMinutes = prevMinutes + currMinutes;
+    let totalHour = prevHour + currHour;
+    
+    if(totalMilliseconds > 99){
+        totalMilliseconds = totalSeconds % 100;
+        totalSeconds++;
+    }
+
+    if(totalSeconds > 59){
+        totalSeconds = totalSeconds - 60;
+        totalMinutes++;
+    }
+
+    if(totalMinutes > 59){
+        totalMinutes = totalMinutes - 60;
+        totalHour++;
+    }
+
+    let totalTime = `${totalHour<10?"0"+totalHour:totalHour}:${totalMinutes<10?"0"+totalMinutes:totalMinutes}:${totalSeconds<10?"0"+totalSeconds:totalSeconds}:${totalMilliseconds<10?"0"+totalMilliseconds:totalMilliseconds}`;
+    // console.log(time);
+    return totalTime;
+
+}
+
 function sortByDate(evt){
 
     console.log(subjectOptions.value);
@@ -37,13 +74,33 @@ function fetchDate(dateObj){
     return date;
 }
 
+function handleTotalHoursOfStudy(evt){
+    const totalHoursOfPlaceholder = document.querySelector("#total-hours-placeholder");
+    let title = subjectOptions.value;
+    let studySessions = fetchLocalStorage("studySessions");
+    let countTotalHours="00:00:00:00";
+    if(studySessions !== null){
+        studySessions.forEach((obj)=>{
+            (obj.subjectWithHours).forEach((subObj)=>{
+                if(subObj.subjectName === title){
+                    console.log(subObj);
+                    countTotalHours = AddHours(countTotalHours,subObj.totalHoursOfStudy);
+                }
+            });
+        });
+    }
+    // console.log(studySessions)
 
+    totalHoursOfPlaceholder.innerText = countTotalHours.slice(0,8);
+    // console.log(studySessions);
+}
 
 
 function handleSubjectOptions(evt){
     // console.log(subjectOptions.value);
     let title = subjectOptions.value;
     let studySessions = fetchLocalStorage("studySessions");
+    // console.log(studySessions);
     subjectData.innerText="";
 
     if(studySessions !== null){
@@ -68,6 +125,7 @@ function handleSubjectOptions(evt){
 
 
 subjectOptions.addEventListener("change",handleSubjectOptions);
+subjectOptions.addEventListener("change",handleTotalHoursOfStudy);
 
 function createCard(title,date,Hours){
     let dataCard = document.createElement("div");
@@ -116,3 +174,4 @@ function setSubjectOptions(){
 
 window.addEventListener("load",setSubjectOptions);
 window.addEventListener("load",handleSubjectOptions);
+window.addEventListener("load",handleTotalHoursOfStudy);

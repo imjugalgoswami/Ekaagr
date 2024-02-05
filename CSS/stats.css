@@ -7,7 +7,10 @@
 
 .select-subject-container{
     /* border: 1px solid red; */
-    margin-top: 2rem;
+    margin-top: 0rem;
+    /* padding-left: 40rem; */
+    display: flex;
+    justify-content: center;
 
 }
 .select-subject-container select{
@@ -16,9 +19,26 @@
     height: 2rem;
     text-align: center;
     font-size: 1rem;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     border-radius: 0.5rem;
     outline: none;
+}
+.select-subject-container .total-hours-of-study{
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;    
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    padding: 0rem 2rem;
+}
+.select-subject-container .total-hours-of-study span{
+    font-weight: 600;
+    color: #333333;
+}
+.select-subject-container .total-hours-of-study h4{
+    margin-left: 0.5rem;
 }
 .sort-and-data-container{
     /* border: 1px solid red; */
