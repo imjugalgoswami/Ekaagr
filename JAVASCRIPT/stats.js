@@ -91,7 +91,7 @@ function handleTotalHoursOfStudy(evt){
     }
     // console.log(studySessions)
 
-    totalHoursOfPlaceholder.innerText = countTotalHours.slice(0,8);
+    totalHoursOfPlaceholder.innerText = `${countTotalHours[0]+countTotalHours[1]+"h"}:${countTotalHours[3]+countTotalHours[4]+"m"}:${countTotalHours[6]+countTotalHours[7]+"s"}`;
     // console.log(studySessions);
 }
 
@@ -141,7 +141,7 @@ function createCard(title,date,Hours){
 
     let totalHours = document.createElement("div");
     totalHours.classList.add("total-hours");
-    totalHours.innerText = Hours.slice(0,8);
+    totalHours.innerText = `${Hours[0]+Hours[1]+"h"}:${Hours[3]+Hours[4]+"m"}:${Hours[6]+Hours[7]+"s"}`;
 
     dataCard.appendChild(subjectName);
     dataCard.appendChild(dateOfStudy);
