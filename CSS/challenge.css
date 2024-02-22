@@ -1,0 +1,145 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.dashboard-section{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashboard-section .form{
+    border: 1px solid black;
+    background-color: #0b3455;
+    width: 50%;
+    height: 60%;
+    padding: 2rem 2rem;
+}
+.dashboard-section .form form{
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+}
+
+.dashboard-section .form form label{
+    font-size: 1.2rem;
+    margin: 0.2rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+.dashboard-section .form form input{
+    width: 100%;
+    height: 2rem;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-section .form form button{
+    font-size: 1.2rem;
+    margin: 1.5rem 0.2rem;
+    padding: 0.3rem;
+    width: 100%;
+}
+.dashboard-section .form form span{
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+
+
+.challenge-container .challenges .challenge{
+    background-color: #0b3455;
+    color: #fff;
+    margin: 0.4rem 0;
+    padding: 0.5rem;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s;
+    
+}
+.challenge-container .challenges .challenge:hover{
+    background-color: #154b75;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.challenge-container .challenges .challenge .challenge-title{
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+
+
+.challenge-calender{
+    /* border: 1px solid red; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: #7990BA;
+    overflow: auto;
+}
+
+.calendar {
+    /* border: 1px solid red; */
+    /* margin: 4rem; */
+    margin: 4rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    height: 320px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    background-color: #0b3455;
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    width: 100%;
+}
+
+.day {
+    height: 40px;
+    padding: 10px 0;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+.remaining-days-container{
+    position: absolute;
+    top: 0;
+    color: #fff;
+}
+
+.display-none{
+    display: none;
+}
+.display-block{
+    display: flex;
+}
+
+.red-flag{
+    background-color: red;
+    color: #fff;
+}
+
+.green-flag{
+    background-color: rgb(213, 246, 213);
+    color: black;
+}
