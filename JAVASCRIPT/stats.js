@@ -74,6 +74,35 @@ function fetchDate(dateObj){
     return date;
 }
 
+function handleCountTotalHoursForADay(evt) {
+
+    todaysHoursPlaceholder = document.querySelector("#todays-hours-placeholder");
+
+    let studySessions = fetchLocalStorage("studySessions");
+    let countTotalHours = "00:00:00:00";
+
+    if (studySessions !== null) {
+        
+        todaysSessions = studySessions.filter((sessionObj) => {
+            let studySessionDate = fetchDate(sessionObj.dateOfStudy);
+            let currentDateTime = new Date();
+            let todaysDate = fetchDate(currentDateTime);
+
+            return studySessionDate === todaysDate;
+        });
+
+        // console.log("hey..", todaysSessions);
+
+        todaysSessions[0].subjectWithHours.forEach((subjectHoursObj) => {
+            countTotalHours = AddHours(countTotalHours, subjectHoursObj.totalHoursOfStudy);
+        })
+
+        // console.log(countTotalHours);
+        todaysHoursPlaceholder.innerText = `${countTotalHours[0]+countTotalHours[1]+"h"}:${countTotalHours[3]+countTotalHours[4]+"m"}:${countTotalHours[6]+countTotalHours[7]+"s"}`;
+    }
+    
+}
+
 function handleTotalHoursOfStudy(evt){
     const totalHoursOfPlaceholder = document.querySelector("#total-hours-placeholder");
     let title = subjectOptions.value;
@@ -125,7 +154,8 @@ function handleSubjectOptions(evt){
 
 
 subjectOptions.addEventListener("change",handleSubjectOptions);
-subjectOptions.addEventListener("change",handleTotalHoursOfStudy);
+subjectOptions.addEventListener("change", handleTotalHoursOfStudy);
+
 
 function createCard(title,date,Hours){
     let dataCard = document.createElement("div");
@@ -174,4 +204,5 @@ function setSubjectOptions(){
 
 window.addEventListener("load",setSubjectOptions);
 window.addEventListener("load",handleSubjectOptions);
-window.addEventListener("load",handleTotalHoursOfStudy);
+window.addEventListener("load", handleTotalHoursOfStudy);
+window.addEventListener("load", handleCountTotalHoursForADay);
