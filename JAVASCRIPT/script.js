@@ -239,6 +239,9 @@ function handleDeleteSubject(evt){
 function handleAddBtn(evt){
     evt.preventDefault();
     let title = document.querySelector("#subject-name").value;
+    if (title === "") {
+        return;
+    }
     let subject = createSubject(title);    
     addSubjects.appendChild(subject);
     document.querySelector("#subject-name").value = "";
